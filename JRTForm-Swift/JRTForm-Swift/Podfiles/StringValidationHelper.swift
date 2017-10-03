@@ -1,5 +1,5 @@
 //
-//  Validation.swift
+//  StringValidationHelper.swift
 //  JRTForm-Swift
 //
 //  Created by Isaac Delgado on 10/3/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Validation: NSObject {
+class StringValidationHelper: NSObject {
 
     // MARK: - Get rules
     var required: ((String) -> String?) {
