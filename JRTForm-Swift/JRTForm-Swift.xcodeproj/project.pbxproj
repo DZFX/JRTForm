@@ -39,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF3745EA1F868A9B0042B1C3 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				BFE56A531F840FA800F8EE37 /* StringValidationHelper.swift */,
+				BFE56A551F8445BC00F8EE37 /* ArrayValidationHelper.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
 		BFE56A341F83F52F00F8EE37 = {
 			isa = PBXGroup;
 			children = (
@@ -72,8 +81,7 @@
 		BFE56A521F840F5F00F8EE37 /* Podfiles */ = {
 			isa = PBXGroup;
 			children = (
-				BFE56A531F840FA800F8EE37 /* StringValidationHelper.swift */,
-				BFE56A551F8445BC00F8EE37 /* ArrayValidationHelper.swift */,
+				BF3745EA1F868A9B0042B1C3 /* Validation */,
 			);
 			path = Podfiles;
 			sourceTree = "<group>";

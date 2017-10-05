@@ -65,15 +65,15 @@ class FormViewController: UITableViewController {
     
     lazy var customTextField: UITableViewCell = {
         return UITableViewCell()
-    }
+    }()
     
     lazy var stringValidator: NSObject = {
         return NSObject()
-    }
+    }()
     
     lazy var arrayValidator: NSObject = {
         return NSObject()
-    }
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
