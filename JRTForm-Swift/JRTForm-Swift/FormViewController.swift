@@ -67,12 +67,12 @@ class FormViewController: UITableViewController {
         return UITableViewCell()
     }()
     
-    lazy var stringValidator: NSObject = {
-        return NSObject()
+    lazy var stringValidator: StringValidationHelper = {
+        return StringValidationHelper()
     }()
     
-    lazy var arrayValidator: NSObject = {
-        return NSObject()
+    lazy var arrayValidator: ArrayValidationHelper = {
+        return ArrayValidationHelper()
     }()
     
     override func viewDidLoad() {
