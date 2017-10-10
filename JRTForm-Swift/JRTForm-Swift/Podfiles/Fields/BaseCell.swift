@@ -10,7 +10,7 @@ import UIKit
 
 protocol CellValidatable {
     var name: String { get set }
-    var isValid: Bool { get set}
+    var isValid: Bool { get }
     func updateStyle()
 }
 
