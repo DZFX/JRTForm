@@ -10,6 +10,7 @@
 		BF14FDA11F86C225009FFC1B /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF14FDA01F86C225009FFC1B /* BaseCell.swift */; };
 		BF14FDA41F86C9CF009FFC1B /* FormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF14FDA31F86C9CF009FFC1B /* FormTableView.swift */; };
 		BF14FDA61F86DB60009FFC1B /* FormTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF14FDA51F86DB60009FFC1B /* FormTextFieldTableViewCell.swift */; };
+		BF71F0D61F8D853A00E23D6B /* FormTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF71F0D51F8D853A00E23D6B /* FormTextFieldTableViewCell.xib */; };
 		BFE56A411F83F53000F8EE37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE56A401F83F52F00F8EE37 /* AppDelegate.swift */; };
 		BFE56A431F83F53000F8EE37 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE56A421F83F53000F8EE37 /* FormViewController.swift */; };
 		BFE56A461F83F53000F8EE37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE56A441F83F53000F8EE37 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		BF14FDA01F86C225009FFC1B /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		BF14FDA31F86C9CF009FFC1B /* FormTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableView.swift; sourceTree = "<group>"; };
 		BF14FDA51F86DB60009FFC1B /* FormTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		BF71F0D51F8D853A00E23D6B /* FormTextFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormTextFieldTableViewCell.xib; sourceTree = "<group>"; };
 		BFE56A3D1F83F52F00F8EE37 /* JRTForm-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JRTForm-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE56A401F83F52F00F8EE37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE56A421F83F53000F8EE37 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			children = (
 				BF14FDA01F86C225009FFC1B /* BaseCell.swift */,
 				BF14FDA51F86DB60009FFC1B /* FormTextFieldTableViewCell.swift */,
+				BF71F0D51F8D853A00E23D6B /* FormTextFieldTableViewCell.xib */,
 			);
 			path = Fields;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				BFE56A4B1F83F53000F8EE37 /* LaunchScreen.storyboard in Resources */,
 				BFE56A481F83F53000F8EE37 /* Assets.xcassets in Resources */,
 				BFE56A461F83F53000F8EE37 /* Main.storyboard in Resources */,
+				BF71F0D61F8D853A00E23D6B /* FormTextFieldTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

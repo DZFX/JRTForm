@@ -8,27 +8,31 @@
 
 import UIKit
 
-protocol CellValidatable {
-    var name: String { get set }
-    var isValid: Bool { get }
-    func updateStyle()
-}
+//protocol CellValidatable {
+//    var name: String { get set }
+//    var isValid: Bool { get }
+//    func updateStyle()
+//}
 
 public class BaseCell: UITableViewCell {
 
     // MARK: - Properties
-//    open var name: String {
-//        get {
-//            assertionFailure("Should be implemented by subclass")
-//            return ""
-//        }
-//    }
-//    open var isValid: Bool {
-//        get {
-//            assertionFailure("Should be implemented by subclass")
-//            return false
-//        }
-//    }
+    open var name: String {
+        set {
+            assertionFailure("Should be implemented by subclass")
+        }
+        
+        get {
+            assertionFailure("Should be implemented by subclass")
+            return ""
+        }
+    }
+    open var isValid: Bool {
+        get {
+            assertionFailure("Should be implemented by subclass")
+            return false
+        }
+    }
     public weak var superTableView: UITableView? {
         var currentView: UIView? = self
         while currentView != nil {
@@ -57,8 +61,8 @@ public class BaseCell: UITableViewCell {
     }
     
     // MARK: - Instance functions
-//    open func updateStyle() {
-//        print(#function)
-//        assertionFailure("Should be implemented by the subclass")
-//    }
+    open func updateStyle() {
+        print(#function)
+        assertionFailure("Should be implemented by the subclass")
+    }
 }

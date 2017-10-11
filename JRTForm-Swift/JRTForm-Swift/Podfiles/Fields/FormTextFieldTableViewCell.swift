@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate let kFormTextFieldTableViewCell = "FormTextFieldTableViewCell"
 
-class FormTextFieldTableViewCell: BaseCell, CellValidatable {
+class FormTextFieldTableViewCell: BaseCell {
 
     
     // MARK: - Outlets
@@ -29,13 +29,17 @@ class FormTextFieldTableViewCell: BaseCell, CellValidatable {
         }
     }
     
-    public var name: String = "" {
-        didSet {
+    override public var name: String {
+        set {
             textField.placeholder = name
             label.text = name
         }
+        
+        get {
+            return label.text ?? ""
+        }
     }
-    public var isValid: Bool {
+    override public var isValid: Bool {
         var valid = true
         if let _errorMessageInValidationBlock = errorMessageInValidationBlock {
             let errorMessage = _errorMessageInValidationBlock(cellText)
@@ -144,7 +148,7 @@ class FormTextFieldTableViewCell: BaseCell, CellValidatable {
         label.isHidden = !hideableLabel
     }
     
-    public func updateStyle() {
+    override public func updateStyle() {
         textField.text = cellText
         if !isValid {
             setErrorStyleWith(message: errorMessageInValidationBlock!(cellText))

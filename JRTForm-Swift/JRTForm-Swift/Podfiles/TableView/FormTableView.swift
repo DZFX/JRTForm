@@ -8,14 +8,34 @@
 
 import UIKit
 
-class FormTableView: UITableView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+public enum FormTableViewCellType {
+    case textField
+    case custom(nibName: String)
+    
+    public var nibName: String {
+        switch self {
+        case .textField:
+            return "FormTextFieldTableViewCell"
+        case .custom(let nibName):
+            return nibName
+        }
     }
-    */
+}
 
+//typealias FormCell = (BaseCell & CellValidatable)
+
+class FormTableView: UITableView {
+    
+    public func formCellOf(type: FormTableViewCellType, andName name: String) -> BaseCell {
+        return formFieldCellWith(nibName: type.nibName, andNameIdentifier: name)
+    }
+
+    private func formFieldCellWith(nibName: String, andNameIdentifier name: String) -> BaseCell {
+        register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: name)
+        if let cell = dequeueReusableCell(withIdentifier: name) as? BaseCell {
+            cell.name = name
+            return cell
+        }
+        return BaseCell()
+    }
 }
