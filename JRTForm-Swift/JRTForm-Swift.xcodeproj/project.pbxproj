@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF1456961F90115B009C1323 /* FormPhoneFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1456941F90115B009C1323 /* FormPhoneFieldTableViewCell.swift */; };
+		BF1456971F90115B009C1323 /* FormPhoneFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1456951F90115B009C1323 /* FormPhoneFieldTableViewCell.xib */; };
+		BF14569B1F90121B009C1323 /* FormTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1456991F90121B009C1323 /* FormTextViewTableViewCell.swift */; };
+		BF14569C1F90121B009C1323 /* FormTextViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF14569A1F90121B009C1323 /* FormTextViewTableViewCell.xib */; };
 		BF14FDA11F86C225009FFC1B /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF14FDA01F86C225009FFC1B /* BaseCell.swift */; };
 		BF14FDA41F86C9CF009FFC1B /* FormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF14FDA31F86C9CF009FFC1B /* FormTableView.swift */; };
 		BF14FDA61F86DB60009FFC1B /* FormTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF14FDA51F86DB60009FFC1B /* FormTextFieldTableViewCell.swift */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF1456941F90115B009C1323 /* FormPhoneFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPhoneFieldTableViewCell.swift; sourceTree = "<group>"; };
+		BF1456951F90115B009C1323 /* FormPhoneFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormPhoneFieldTableViewCell.xib; sourceTree = "<group>"; };
+		BF1456991F90121B009C1323 /* FormTextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextViewTableViewCell.swift; sourceTree = "<group>"; };
+		BF14569A1F90121B009C1323 /* FormTextViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormTextViewTableViewCell.xib; sourceTree = "<group>"; };
 		BF14FDA01F86C225009FFC1B /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		BF14FDA31F86C9CF009FFC1B /* FormTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableView.swift; sourceTree = "<group>"; };
 		BF14FDA51F86DB60009FFC1B /* FormTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -47,12 +55,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF1456921F901103009C1323 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				BF14FDA51F86DB60009FFC1B /* FormTextFieldTableViewCell.swift */,
+				BF71F0D51F8D853A00E23D6B /* FormTextFieldTableViewCell.xib */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		BF1456931F90111D009C1323 /* PhoneField */ = {
+			isa = PBXGroup;
+			children = (
+				BF1456941F90115B009C1323 /* FormPhoneFieldTableViewCell.swift */,
+				BF1456951F90115B009C1323 /* FormPhoneFieldTableViewCell.xib */,
+			);
+			path = PhoneField;
+			sourceTree = "<group>";
+		};
+		BF1456981F9011F5009C1323 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				BF1456991F90121B009C1323 /* FormTextViewTableViewCell.swift */,
+				BF14569A1F90121B009C1323 /* FormTextViewTableViewCell.xib */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
 		BF14FD9F1F86C20D009FFC1B /* Fields */ = {
 			isa = PBXGroup;
 			children = (
 				BF14FDA01F86C225009FFC1B /* BaseCell.swift */,
-				BF14FDA51F86DB60009FFC1B /* FormTextFieldTableViewCell.swift */,
-				BF71F0D51F8D853A00E23D6B /* FormTextFieldTableViewCell.xib */,
+				BF1456931F90111D009C1323 /* PhoneField */,
+				BF1456921F901103009C1323 /* TextField */,
+				BF1456981F9011F5009C1323 /* TextView */,
 			);
 			path = Fields;
 			sourceTree = "<group>";
@@ -173,8 +209,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1456971F90115B009C1323 /* FormPhoneFieldTableViewCell.xib in Resources */,
 				BFE56A4B1F83F53000F8EE37 /* LaunchScreen.storyboard in Resources */,
 				BFE56A481F83F53000F8EE37 /* Assets.xcassets in Resources */,
+				BF14569C1F90121B009C1323 /* FormTextViewTableViewCell.xib in Resources */,
 				BFE56A461F83F53000F8EE37 /* Main.storyboard in Resources */,
 				BF71F0D61F8D853A00E23D6B /* FormTextFieldTableViewCell.xib in Resources */,
 			);
@@ -190,6 +228,8 @@
 				BFE56A561F8445BC00F8EE37 /* ArrayValidationHelper.swift in Sources */,
 				BFE56A431F83F53000F8EE37 /* FormViewController.swift in Sources */,
 				BFE56A541F840FA800F8EE37 /* StringValidationHelper.swift in Sources */,
+				BF1456961F90115B009C1323 /* FormPhoneFieldTableViewCell.swift in Sources */,
+				BF14569B1F90121B009C1323 /* FormTextViewTableViewCell.swift in Sources */,
 				BF14FDA61F86DB60009FFC1B /* FormTextFieldTableViewCell.swift in Sources */,
 				BF14FDA11F86C225009FFC1B /* BaseCell.swift in Sources */,
 				BFE56A411F83F53000F8EE37 /* AppDelegate.swift in Sources */,
