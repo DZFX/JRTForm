@@ -30,26 +30,59 @@ class FormViewController: UIViewController {
         _textField.placeholderColor = .gray
         _textField.returnKeyType = .next
         _textField.shouldReturn = { textField in
+            self.secureTextField.fieldBecomeFirstResponder()
+            textField.resignFirstResponder()
             // TODO: - Focus next textfield when pressing "Enter"
             return true
         }
         _textField.errorMessageInValidationBlock = { (stringToValidate) -> String in
             do {
                 try self.stringValidator.required(stringToValidate)
+                try self.stringValidator.alpha(stringToValidate)
+                try self.stringValidator.maxLength(stringToValidate, 8)
+                try self.stringValidator.minLength(stringToValidate, 3)
             } catch StringValidationError.required {
                 return "is required"
+            } catch StringValidationError.alpha {
+                return "should be alphabetic characters"
+            } catch StringValidationError.maxLength(let length) {
+                return "should be no more than \(length) characters"
+            } catch StringValidationError.minLength(let length) {
+                return "should be no less than \(length) characters"
             } catch {
-                return "unknown error"
+                return "is invalid"
             }
             return ""
         }
         return _textField
     }()
     
-    lazy var secureTextField: UITableViewCell = {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Secure TextField"
-        return cell
+    lazy var secureTextField: FormTextFieldTableViewCell = {
+        let _textField = tableView.formCellOf(type: .textField, andName: FieldIdentifiers.secureText) as? FormTextFieldTableViewCell ?? FormTextFieldTableViewCell()
+        _textField.placeholderColor = .gray
+        _textField.returnKeyType = .next
+        _textField.isSecureTextEntry = true
+        _textField.shouldReturn = { textField in
+            textField.resignFirstResponder()
+            // TODO: - Focus next textfield when pressing "Enter"
+            return true
+        }
+        _textField.errorMessageInValidationBlock = { (stringToValidate) -> String in
+            do {
+                try self.stringValidator.required(stringToValidate)
+                try self.stringValidator.alpha(stringToValidate)
+                try self.stringValidator.maxLength(stringToValidate, 8)
+                try self.stringValidator.minLength(stringToValidate, 3)
+            } catch StringValidationError.required {
+                return "is required"
+            } catch StringValidationError.minLength(let length) {
+                return "should be no less than \(length) characters"
+            } catch {
+                return "is invalid"
+            }
+            return ""
+        }
+        return _textField
     }()
     
     lazy var textView: UITableViewCell = {

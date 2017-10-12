@@ -10,8 +10,8 @@ import UIKit
 
 public enum StringValidationError: Error {
     case required
-    case maxLenght(UInt)
-    case minLenght(UInt)
+    case maxLength(UInt)
+    case minLength(UInt)
     case exactLength(UInt)
     case alpha
     case alphaSpace
@@ -37,7 +37,7 @@ class StringValidationHelper: NSObject {
         return { string, maxLength in
             if string.count > maxLength && string.count > 0 {
                 print("Cannot be more than \(maxLength) character(s).")
-                throw StringValidationError.maxLenght(maxLength)
+                throw StringValidationError.maxLength(maxLength)
             }
         }
     }
@@ -46,7 +46,7 @@ class StringValidationHelper: NSObject {
         return { string, minLength in
             if string.count < minLength && string.count > 0 {
                 print("Cannot be less than \(minLength) character(s).")
-                throw StringValidationError.minLenght(minLength)
+                throw StringValidationError.minLength(minLength)
             }
         }
     }

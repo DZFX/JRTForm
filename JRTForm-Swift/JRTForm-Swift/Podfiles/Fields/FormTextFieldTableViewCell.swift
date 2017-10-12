@@ -24,7 +24,7 @@ class FormTextFieldTableViewCell: BaseCell {
         }
         
         get {
-            return label.text ?? ""
+            return textField.placeholder ?? ""
         }
     }
     
@@ -66,7 +66,7 @@ class FormTextFieldTableViewCell: BaseCell {
         }
     }
     
-    private var isSecureTextEntry: Bool {
+    public var isSecureTextEntry: Bool {
         set {
             textField.isSecureTextEntry = newValue
         }
@@ -143,7 +143,7 @@ class FormTextFieldTableViewCell: BaseCell {
         if labelColor != nil {
             label.textColor = .red
         }
-        label.text = "\(name): \(message)"
+        label.text = "\(name) \(message)"
         label.isHidden = !hideableLabel
     }
     
