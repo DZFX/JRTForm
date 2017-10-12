@@ -8,12 +8,6 @@
 
 import UIKit
 
-//protocol CellValidatable {
-//    var name: String { get set }
-//    var isValid: Bool { get }
-//    func updateStyle()
-//}
-
 public class BaseCell: UITableViewCell {
 
     // MARK: - Properties

@@ -11,13 +11,34 @@ import UIKit
 fileprivate let kFormTextFieldTableViewCell = "FormTextFieldTableViewCell"
 
 class FormTextFieldTableViewCell: BaseCell {
-
     
     // MARK: - Outlets
-    @IBOutlet private weak var label: UILabel!
-    @IBOutlet private weak var textField: UITextField!
+    @IBOutlet var label: UILabel!
+    @IBOutlet var textField: UITextField!
     
     // MARK: - Properties
+    override public var name: String {
+        set {
+            textField.placeholder = newValue
+            label.text = newValue
+        }
+        
+        get {
+            return label.text ?? ""
+        }
+    }
+    
+    override public var isValid: Bool {
+        var valid = true
+        if let _errorMessageInValidationBlock = errorMessageInValidationBlock {
+            let errorMessage = _errorMessageInValidationBlock(cellText ?? "")
+            if !errorMessage.isEmpty {
+                valid = false
+            }
+        }
+        return valid
+    }
+    
     public var cellText: String? {
         set {
             textField.text = newValue
@@ -27,27 +48,6 @@ class FormTextFieldTableViewCell: BaseCell {
         get {
             return textField.text?.trimmingCharacters(in: CharacterSet.whitespaces)
         }
-    }
-    
-    override public var name: String {
-        set {
-            textField.placeholder = name
-            label.text = name
-        }
-        
-        get {
-            return label.text ?? ""
-        }
-    }
-    override public var isValid: Bool {
-        var valid = true
-        if let _errorMessageInValidationBlock = errorMessageInValidationBlock {
-            let errorMessage = _errorMessageInValidationBlock(cellText)
-            if !errorMessage.isEmpty {
-                valid = false
-            }
-        }
-        return valid
     }
     
     public var placeholderColor: UIColor? {
@@ -101,7 +101,7 @@ class FormTextFieldTableViewCell: BaseCell {
     private var hideableLabel: Bool = false
     
     // MARK: - Action blocks
-    public var errorMessageInValidationBlock: ((String?) -> String)?
+    public var errorMessageInValidationBlock: ((String) -> String)?
     public var didEndEditing: ((UITextField) -> Void)?
     public var didBeginEditing: ((UITextField) -> Void)?
     public var shouldBeginEditing: ((UITextField) -> Bool)?
@@ -113,7 +113,6 @@ class FormTextFieldTableViewCell: BaseCell {
     // MARK: - Override functions
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func didMoveToSuperview() {
@@ -151,7 +150,7 @@ class FormTextFieldTableViewCell: BaseCell {
     override public func updateStyle() {
         textField.text = cellText
         if !isValid {
-            setErrorStyleWith(message: errorMessageInValidationBlock!(cellText))
+            setErrorStyleWith(message: errorMessageInValidationBlock!(cellText ?? ""))
         } else if !(cellText?.isEmpty ?? true) {
             setDefaultStyle()
         } else {
@@ -166,6 +165,7 @@ class FormTextFieldTableViewCell: BaseCell {
 
 extension FormTextFieldTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
+        updateStyle()
         didEndEditing?(textField)
     }
     
@@ -190,6 +190,14 @@ extension FormTextFieldTableViewCell: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let swiftRange = Range<Int>(range), let textFieldText = textField.text {
+            if (swiftRange == Range(0..<0)) && (string.count == 1) && (textFieldText.count == 0) {
+                setDefaultStyle()
+            } else if (swiftRange == Range(0..<textFieldText.count)) && string.count == 0 {
+                setEmptyStyle()
+            }
+        }
+        
         return shouldChangeCharacters?(textField, range, string) ?? true
     }
 }

@@ -22,8 +22,6 @@ public enum FormTableViewCellType {
     }
 }
 
-//typealias FormCell = (BaseCell & CellValidatable)
-
 class FormTableView: UITableView {
     
     public func formCellOf(type: FormTableViewCellType, andName name: String) -> BaseCell {

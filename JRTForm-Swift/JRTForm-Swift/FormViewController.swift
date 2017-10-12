@@ -33,13 +33,17 @@ class FormViewController: UIViewController {
             // TODO: - Focus next textfield when pressing "Enter"
             return true
         }
-        _textField.errorMessageInValidationBlock = { stringToValidate in
+        _textField.errorMessageInValidationBlock = { (stringToValidate) -> String in
             do {
-                
+                try self.stringValidator.required(stringToValidate)
+            } catch StringValidationError.required {
+                return "is required"
+            } catch {
+                return "unknown error"
             }
             return ""
         }
-        return tableView.formCellOf(type: .textField, andName: FieldIdentifiers.text) as? FormTextFieldTableViewCell ?? FormTextFieldTableViewCell()
+        return _textField
     }()
     
     lazy var secureTextField: UITableViewCell = {
