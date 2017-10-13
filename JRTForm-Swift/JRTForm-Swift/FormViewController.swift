@@ -43,13 +43,13 @@ class FormViewController: UIViewController {
     
     // MARK: - Table view cell iVars
     lazy var textField: FormTextFieldTableViewCell = {
-        let _textField = tableView.formCellOf(type: .textField, andName: FieldIdentifiers.text) as? FormTextFieldTableViewCell ?? FormTextFieldTableViewCell()
+        guard let _textField = tableView.formCellOf(type: .textField, andName: FieldIdentifiers.text) as? FormTextFieldTableViewCell else {
+            return FormTextFieldTableViewCell()
+        }
         _textField.placeholderColor = .gray
         _textField.returnKeyType = .next
         _textField.shouldReturn = { textField in
             self.secureTextField.fieldBecomeFirstResponder()
-            textField.resignFirstResponder()
-            // TODO: - Focus next textfield when pressing "Enter"
             return true
         }
         _textField.errorMessageInValidationBlock = { (stringToValidate) -> String in
@@ -77,16 +77,17 @@ class FormViewController: UIViewController {
     }()
     
     lazy var secureTextField: FormTextFieldTableViewCell = {
-        let _textField = tableView.formCellOf(type: .textField, andName: FieldIdentifiers.secureText) as? FormTextFieldTableViewCell ?? FormTextFieldTableViewCell()
-        _textField.placeholderColor = .gray
-        _textField.returnKeyType = .next
-        _textField.isSecureTextEntry = true
-        _textField.shouldReturn = { textField in
-            textField.resignFirstResponder()
-            // TODO: - Focus next textfield when pressing "Enter"
+        guard let _secureTextField = tableView.formCellOf(type: .textField, andName: FieldIdentifiers.secureText) as? FormTextFieldTableViewCell else {
+            return FormTextFieldTableViewCell()
+        }
+        _secureTextField.placeholderColor = .gray
+        _secureTextField.returnKeyType = .next
+        _secureTextField.isSecureTextEntry = true
+        _secureTextField.shouldReturn = { textField in
+            self.textView.fieldBecomeFirstResponder()
             return true
         }
-        _textField.errorMessageInValidationBlock = { (stringToValidate) -> String in
+        _secureTextField.errorMessageInValidationBlock = { (stringToValidate) -> String in
             do {
                 try self.stringValidator.required(stringToValidate)
                 try self.stringValidator.minLength(stringToValidate, 3)
@@ -101,13 +102,33 @@ class FormViewController: UIViewController {
             }
             return ""
         }
-        return _textField
+        return _secureTextField
     }()
     
-    lazy var textView: UITableViewCell = {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "TextView"
-        return cell
+    lazy var textView: FormTextViewTableViewCell = {
+        guard let _textView = tableView.formCellOf(type: .textView, andName: FieldIdentifiers.textView) as? FormTextViewTableViewCell else {
+            return FormTextViewTableViewCell()
+        }
+        _textView.placeholderColor = .gray
+        _textView.keyboardType = .emailAddress
+        
+        _textView.errorMessageInValidationBlock = { stringToValidate -> String in
+            do {
+                try self.stringValidator.required(stringToValidate)
+                try self.stringValidator.alphaSpace(stringToValidate)
+                try self.stringValidator.minLength(stringToValidate, 3)
+            } catch StringValidationError.required(let msg) {
+                return msg
+            } catch StringValidationError.alphaSpace(let msg) {
+                return msg
+            } catch StringValidationError.minLength(_, let msg) {
+                return msg
+            } catch {
+                return "is invalid"
+            }
+            return ""
+        }
+        return _textView
     }()
     
     lazy var phoneNumberField: UITableViewCell = {

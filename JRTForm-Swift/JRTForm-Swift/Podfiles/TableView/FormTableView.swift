@@ -27,12 +27,15 @@ import UIKit
 
 public enum FormTableViewCellType {
     case textField
+    case textView
     case custom(nibName: String)
     
     public var nibName: String {
         switch self {
         case .textField:
             return "FormTextFieldTableViewCell"
+        case .textView:
+            return "FormTextViewTableViewCell"
         case .custom(let nibName):
             return nibName
         }
@@ -41,6 +44,32 @@ public enum FormTableViewCellType {
 
 class FormTableView: UITableView {
     
+    weak var assignedDelegate: UITableViewDelegate?
+    
+    override var delegate: UITableViewDelegate? {
+        set {
+            if (newValue as? FormTableView) == self {
+                assignedDelegate = nil
+            } else {
+                assignedDelegate = newValue
+            }
+            super.delegate = newValue
+        }
+        
+        get {
+            return super.delegate
+        }
+    }
+    
+    // MARK: - Override
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        if delegate == nil {
+            delegate = self
+        }
+    }
+    
+    // MARK: - Public functions
     public func formCellOf(type: FormTableViewCellType, andName name: String) -> BaseCell {
         return formFieldCellWith(nibName: type.nibName, andNameIdentifier: name)
     }
@@ -52,5 +81,12 @@ class FormTableView: UITableView {
             return cell
         }
         return BaseCell()
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension FormTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.assignedDelegate?.tableView?(tableView, heightForRowAt: indexPath) ?? UITableViewAutomaticDimension
     }
 }
