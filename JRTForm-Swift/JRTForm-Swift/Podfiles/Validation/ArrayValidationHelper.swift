@@ -9,10 +9,10 @@
 import UIKit
 
 public enum ArrayValidationError: Error {
-    case required
-    case maxLength(UInt)
-    case minLength(UInt)
-    case exactLEngth(UInt)
+    case required(String)
+    case maxLength(UInt, String)
+    case minLength(UInt, String)
+    case exactLEngth(UInt, String)
 }
 
 class ArrayValidationHelper: NSObject {
@@ -21,7 +21,7 @@ class ArrayValidationHelper: NSObject {
     var required: (([Any]?) throws -> Void) {
         return { array in
             guard array != nil || array!.count >= 1 else {
-                throw ArrayValidationError.required
+                throw ArrayValidationError.required("is required")
             }
         }
     }
@@ -29,7 +29,7 @@ class ArrayValidationHelper: NSObject {
     var maxLength: (([Any], UInt) throws -> Void) {
         return { array, maxLength in
             guard array.count <= maxLength && array.count > 0 else {
-                throw ArrayValidationError.maxLength(maxLength)
+                throw ArrayValidationError.maxLength(maxLength, "should have at most \(maxLength) elements")
             }
         }
     }
@@ -37,7 +37,7 @@ class ArrayValidationHelper: NSObject {
     var minLength: (([Any], UInt) throws -> Void) {
         return { array, minLength in
             guard array.count > minLength && array.count > 0 else {             
-                throw ArrayValidationError.minLength(minLength)
+                throw ArrayValidationError.minLength(minLength, "should have at least \(minLength) elements")
             }
         }
     }
@@ -45,7 +45,7 @@ class ArrayValidationHelper: NSObject {
     var exactLength: (([Any], UInt) throws -> Void) {
         return { array, exactLength in
             guard array.count == exactLength && array.count > 0 else {
-                throw ArrayValidationError.exactLEngth(exactLength)
+                throw ArrayValidationError.exactLEngth(exactLength, "must have exactly \(exactLength) elements")
             }
         }
     }

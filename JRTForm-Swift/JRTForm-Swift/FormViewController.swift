@@ -42,10 +42,12 @@ class FormViewController: UIViewController {
                 try self.stringValidator.maxLength(stringToValidate, 8)
                 try self.stringValidator.minLength(stringToValidate, 3)
             } catch StringValidationError.required(let defaultMessage) {
+                // Optionally take the default message
                 return defaultMessage
             } catch StringValidationError.alpha {
                 return "should be alphabetic characters"
             } catch StringValidationError.maxLength(let length) {
+                // Or ignore and implement your own message with the provided info
                 return "should be no more than \(length) characters"
             } catch StringValidationError.minLength(let length) {
                 return "should be no less than \(length) characters"
@@ -72,8 +74,10 @@ class FormViewController: UIViewController {
                 try self.stringValidator.required(stringToValidate)
                 try self.stringValidator.minLength(stringToValidate, 3)
             } catch StringValidationError.required {
+                // catch error and use custom message
                 return "is required"
             } catch StringValidationError.minLength(_, let defaultMessage) {
+                // catch error and use default message
                 return defaultMessage
             } catch {
                 return "is invalid"
