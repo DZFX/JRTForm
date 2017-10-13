@@ -9,16 +9,16 @@
 import UIKit
 
 public enum StringValidationError: Error {
-    case required
-    case maxLength(UInt)
-    case minLength(UInt)
-    case exactLength(UInt)
-    case alpha
-    case alphaSpace
-    case numeric
-    case decimal
-    case twoDecimals
-    case email
+    case required(defaultMessage: String)
+    case maxLength(UInt, defaultMessage: String)
+    case minLength(UInt, defaultMessage: String)
+    case exactLength(UInt, defaultMessage: String)
+    case alpha(defaultMessage: String)
+    case alphaSpace(defaultMessage: String)
+    case numeric(defaultMessage: String)
+    case decimal(defaultMessage: String)
+    case twoDecimals(defaultMessage: String)
+    case email(defaultMessage: String)
 }
 
 class StringValidationHelper: NSObject {
@@ -27,8 +27,7 @@ class StringValidationHelper: NSObject {
     var required: ((String) throws -> Void) {
         return { string in
             if string.count < 1 {
-                print("Is required")
-                throw StringValidationError.required
+                throw StringValidationError.required(defaultMessage: "is required")
             }
         }
     }
@@ -36,8 +35,7 @@ class StringValidationHelper: NSObject {
     var maxLength: ((String, UInt) throws -> Void) {
         return { string, maxLength in
             if string.count > maxLength && string.count > 0 {
-                print("Cannot be more than \(maxLength) character(s).")
-                throw StringValidationError.maxLength(maxLength)
+                throw StringValidationError.maxLength(maxLength, defaultMessage: "cannot be more than \(maxLength) character(s).")
             }
         }
     }
@@ -45,8 +43,7 @@ class StringValidationHelper: NSObject {
     var minLength: ((String, UInt) throws -> Void) {
         return { string, minLength in
             if string.count < minLength && string.count > 0 {
-                print("Cannot be less than \(minLength) character(s).")
-                throw StringValidationError.minLength(minLength)
+                throw StringValidationError.minLength(minLength, defaultMessage: "cannot be less than \(minLength) character(s).")
             }
         }
     }
@@ -54,8 +51,7 @@ class StringValidationHelper: NSObject {
     var exactLength: ((String, UInt) throws -> Void) {
         return { string, exactLength in
             if string.count != exactLength && string.count > 0 {
-                print("Must be exactly \(exactLength) character(s).")
-                throw StringValidationError.exactLength(exactLength)
+                throw StringValidationError.exactLength(exactLength, defaultMessage: "must be exactly \(exactLength) character(s).")
             }
         }
     }
@@ -63,8 +59,7 @@ class StringValidationHelper: NSObject {
     var alpha: ((String) throws -> Void) {
         return { string in
             if !self.test(string: string, withExpression: "[a-zA-Z]+") {
-                print("Must be alphabetic characters only and no spaces.")
-                throw StringValidationError.alpha
+                throw StringValidationError.alpha(defaultMessage: "must be alphabetic characters only and no spaces.")
             }
         }
     }
@@ -72,8 +67,7 @@ class StringValidationHelper: NSObject {
     var alphaSpace: ((String) throws -> Void) {
         return { string in
             if !self.test(string: string, withExpression: "[a-zA-Z\\s]+") {
-                print("Must be alphabetic characters only.")
-                throw StringValidationError.alphaSpace
+                throw StringValidationError.alphaSpace(defaultMessage: "must be alphabetic characters only.")
             }
         }
     }
@@ -81,8 +75,7 @@ class StringValidationHelper: NSObject {
     var numeric: ((String) throws -> Void) {
         return { string in
             if !self.test(string: string, withExpression: "[0-9]+") {
-                print("Must be non-negative integers only only.")
-                throw StringValidationError.numeric
+                throw StringValidationError.numeric(defaultMessage: "must be non-negative integers only only.")
             }
         }
     }
@@ -90,8 +83,7 @@ class StringValidationHelper: NSObject {
     var decimal: ((String) throws -> Void) {
         return { string in
             if !self.test(string: string, withExpression: "[0-9]+(\\.[0-9]+)?") {
-                print("Must be non-negative decimal number only.")
-                throw StringValidationError.decimal
+                throw StringValidationError.decimal(defaultMessage: "must be non-negative decimal number only.")
             }
         }
     }
@@ -99,16 +91,14 @@ class StringValidationHelper: NSObject {
     var twoDecimals: ((String) throws -> Void) {
         return { string in
             if !self.test(string: string, withExpression: "[0-9]+(\\.[0-9][0-9])?") {
-                print("Must be non-negative decimal number only (2 decimals max).")
-                throw StringValidationError.twoDecimals
+                throw StringValidationError.twoDecimals(defaultMessage: "must be non-negative decimal number only (2 decimals max).")
             }
         }
     }
     var email: ((String) throws -> Void) {
         return { string in
             if !self.test(string: string, withExpression: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?") {
-                print("Must be a valid email.")
-                throw StringValidationError.email
+                throw StringValidationError.email(defaultMessage: "must be a valid email.")
             }
         }
     }

@@ -41,8 +41,8 @@ class FormViewController: UIViewController {
                 try self.stringValidator.alpha(stringToValidate)
                 try self.stringValidator.maxLength(stringToValidate, 8)
                 try self.stringValidator.minLength(stringToValidate, 3)
-            } catch StringValidationError.required {
-                return "is required"
+            } catch StringValidationError.required(let defaultMessage) {
+                return defaultMessage
             } catch StringValidationError.alpha {
                 return "should be alphabetic characters"
             } catch StringValidationError.maxLength(let length) {
@@ -70,13 +70,11 @@ class FormViewController: UIViewController {
         _textField.errorMessageInValidationBlock = { (stringToValidate) -> String in
             do {
                 try self.stringValidator.required(stringToValidate)
-                try self.stringValidator.alpha(stringToValidate)
-                try self.stringValidator.maxLength(stringToValidate, 8)
                 try self.stringValidator.minLength(stringToValidate, 3)
             } catch StringValidationError.required {
                 return "is required"
-            } catch StringValidationError.minLength(let length) {
-                return "should be no less than \(length) characters"
+            } catch StringValidationError.minLength(_, let defaultMessage) {
+                return defaultMessage
             } catch {
                 return "is invalid"
             }

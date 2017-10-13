@@ -128,7 +128,9 @@ class FormTextFieldTableViewCell: BaseCell {
             label.textColor = _labelColor
         }
         label.text = name
-        label.isHidden = !hideableLabel
+        if hideableLabel {
+            label.isHidden = false
+        }
     }
     
     public func setEmptyStyle() {
@@ -136,7 +138,9 @@ class FormTextFieldTableViewCell: BaseCell {
             label.textColor = _labelColor
         }
         label.text = name
-        label.isHidden = hideableLabel
+        if hideableLabel {
+            label.isHidden = true
+        }
     }
     
     public func setErrorStyleWith(message: String) {
@@ -144,7 +148,9 @@ class FormTextFieldTableViewCell: BaseCell {
             label.textColor = .red
         }
         label.text = "\(name) \(message)"
-        label.isHidden = !hideableLabel
+        if hideableLabel {
+            label.isHidden = false
+        }
     }
     
     override public func updateStyle() {
