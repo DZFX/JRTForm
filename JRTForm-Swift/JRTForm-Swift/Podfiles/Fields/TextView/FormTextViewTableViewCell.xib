@@ -24,9 +24,8 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CUF-1e-5hK">
-                        <rect key="frame" x="8" y="27" width="304" height="151"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CUF-1e-5hK">
+                        <rect key="frame" x="8" y="20" width="304" height="158"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -35,7 +34,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="kgw-Xn-OmQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="N6I-zw-XQL"/>
+                    <constraint firstItem="CUF-1e-5hK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="lwv-oH-lVk"/>
+                    <constraint firstAttribute="trailing" secondItem="CUF-1e-5hK" secondAttribute="trailing" constant="8" id="qCy-c8-wuL"/>
+                    <constraint firstItem="CUF-1e-5hK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="rk5-Rn-oqF"/>
                     <constraint firstAttribute="trailing" secondItem="kgw-Xn-OmQ" secondAttribute="trailing" constant="8" id="uug-K6-RHm"/>
+                    <constraint firstAttribute="bottom" secondItem="CUF-1e-5hK" secondAttribute="bottom" constant="7.5" id="uzk-5G-oNB"/>
                     <constraint firstItem="kgw-Xn-OmQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="yee-Xp-zFv"/>
                 </constraints>
             </tableViewCellContentView>
